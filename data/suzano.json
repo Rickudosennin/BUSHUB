@@ -1,0 +1,101 @@
+[
+    {
+        "id": "ARALU_KM55",
+        "nome": "Aralú | KM 55",
+        "tarifa": "R$ 5,00",
+        "trajetos": {
+            "SAÍDA": {
+                "Dias Úteis": ["05h20|Divisa km. 55", "08h00", "11h20|Divisa km. 55", "13h10|km. 55 Divisa", "14h30|km. 55 Divisa", "17h20|km. 55 Divisa", "19h00|km. 55 Divisa", "23h10|km. 55 Divisa"],
+                "SÁBADOS / DOMINGOS / FERIADOS": ["08h00", "18h40"]
+            }
+        }
+    },
+    {
+        "id": "CACHOEIRA_CDHU",
+        "nome": "Cachoeira | CDHU",
+        "tarifa": "R$ 5,00",
+        "trajetos": {
+            "SAÍDA": {
+                "Dias Úteis": ["04h50|Urupês", "06h30", "10h40|Urupês", "13h00|Urupês", "15h10", "17h15|Urupês", "19h00|Urupês", "23h10"],
+                "SÁBADOS / DOMINGOS / FERIADOS": ["06h00", "17h40"]
+            }
+        }
+    },
+    {
+        "id": "FUNIL_DIVISA",
+        "nome": "Funil | Divisa",
+        "tarifa": "R$ 5,00",
+        "trajetos": {
+            "SAÍDA": {
+                "Dias Úteis": ["05h35|Redentor. Divisa", "11h20|Redentor. Divisa", "17h40|Redentor. P. Alegre. Funil. Divisa", "23h10|Funil. Divisa"],
+                "SÁBADOS / DOMINGOS / FERIADOS": ["Não opera neste dia"]
+            }
+        }
+    },
+    {
+        "id": "JARDIM_ELDORADO",
+        "nome": "Jardim Eldorado",
+        "tarifa": "R$ 5,00",
+        "trajetos": {
+            "SAÍDA": {
+                "Dias Úteis": ["04h00", "04h40", "06h00", "07h40", "11h40", "13h00", "14h20", "17h40", "19h00", "21h20", "22h20", "23h20"],
+                "SÁBADOS / DOMINGOS / FERIADOS": ["05h00", "06h10", "11h40", "13h20", "17h30", "21h10"]
+            }
+        }
+    },
+    {
+        "id": "MONTE_NEGRO",
+        "nome": "Monte Negro",
+        "tarifa": "R$ 5,00",
+        "trajetos": {
+            "SAÍDA": {
+                "Dias Úteis": ["03h40|Garagem", "04h40", "05h20", "06h30", "07h50", "09h50", "11h10", "12h40|Port.", "13h20|Port.", "14h20", "15h40", "17h20", "18h40|Port.", "19h30", "21h20", "22h20", "23h20"],
+                "SÁBADOS / DOMINGOS / FERIADOS": ["05h00", "06h35", "11h30", "13h30", "17h30", "21h10"]
+            }
+        }
+    },
+    {
+        "id": "NOVO_EDEN",
+        "nome": "Novo Éden",
+        "tarifa": "R$ 5,00",
+        "trajetos": {
+            "SAÍDA": {
+                "Dias Úteis": ["06h10|V. Faz", "07h10", "11h45|V. Faz", "12h40|V. Faz", "14h20|V. Faz", "16h00", "18h00|V. Faz", "19h10", "22h20", "23h20"],
+                "SÁBADOS / DOMINGOS / FERIADOS": ["06h10", "12h00", "14h00", "18h00", "21h10"]
+            }
+        }
+    },
+    {
+        "id": "OURO_FINO",
+        "nome": "Ouro Fino",
+        "tarifa": "R$ 5,00",
+        "trajetos": {
+            "SAÍDA": {
+                "Dias Úteis": ["04h50|Barroca", "05h20|Petrobras", "06h00|Teijikita", "07h10", "10h40|Petrobras. Barroca", "12h35|Petrobras. Barroca", "14h30|Teijikita", "16h00|Teijikita", "17h30|Petrobras. Barroca", "20h00", "23h10|V. P. Branca"],
+                "SÁBADOS / DOMINGOS / FERIADOS": ["09h00", "11h20", "16h00"]
+            }
+        }
+    },
+    {
+        "id": "PEDRA_BRANCA",
+        "nome": "Pedra Branca",
+        "tarifa": "R$ 5,00",
+        "trajetos": {
+            "SAÍDA": {
+                "Dias Úteis": ["05h10", "10h25", "12h30", "17h40"],
+                "SÁBADOS / DOMINGOS / FERIADOS": ["05h45|Ouro-Fino", "17h50|Ouro-Fino"]
+            }
+        }
+    },
+    {
+        "id": "POUSO_ALEGRE",
+        "nome": "Pouso Alegre",
+        "tarifa": "R$ 5,00",
+        "trajetos": {
+            "SAÍDA": {
+                "Dias Úteis": ["04h40|Garagem", "07h10", "10h25|Redentor", "12h50|Redentor", "17h40|Red/Funil", "23h10|Funil Divisa"],
+                "SÁBADOS / DOMINGOS / FERIADOS": ["07h10", "18h40"]
+            }
+        }
+    }
+]
