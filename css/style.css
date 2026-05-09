@@ -64,6 +64,47 @@ header p {
     flex: 1;
 }
 
+/* ===== SELETOR DE CIDADE ===== */
+.cidade-card {
+    margin-bottom: 20px;
+}
+
+.tabs-cidade {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.cidade-btn {
+    flex: 1;
+    min-width: 160px;
+    padding: 15px 20px;
+    border: 2px solid var(--border);
+    background: var(--card-dark);
+    color: var(--text-dim);
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.cidade-btn:hover {
+    border-color: var(--neon-blue);
+    color: var(--neon-blue);
+    background: rgba(0, 210, 255, 0.05);
+    transform: translateY(-2px);
+}
+
+.cidade-btn.active {
+    background: rgba(0, 210, 255, 0.1);
+    border-color: var(--neon-blue);
+    color: var(--neon-blue);
+    box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
+}
+
 .filtro-card {
     background: var(--card-dark);
     padding: 20px;
@@ -81,6 +122,11 @@ header p {
     }
     header h1 {
         font-size: 1.8rem;
+    }
+    .cidade-btn {
+        min-width: 100%;
+        font-size: 0.8rem;
+        padding: 12px 15px;
     }
 }
 
@@ -149,9 +195,23 @@ select {
 .percurso-info {
     font-size: 0.7rem;
     color: var(--text-dim);
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     padding-left: 16px;
     text-transform: uppercase;
+}
+
+/* ===== LEGENDA DA LINHA ===== */
+.legenda-info {
+    font-size: 0.6rem;
+    color: var(--neon-blue);
+    margin-bottom: 15px;
+    padding: 8px 12px;
+    background: rgba(0, 210, 255, 0.05);
+    border-left: 3px solid var(--neon-blue);
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1.6;
 }
 
 .tab-section {
@@ -254,9 +314,11 @@ select {
 
 .hora-item .observacao {
     font-size: 0.5rem;
-    color: var(--text-dim);
+    color: var(--neon-blue);
     display: block;
     margin-top: 2px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
 }
 
 footer {

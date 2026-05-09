@@ -3,26 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>BUS HUB - Santa Isabel</title>
+    <title>BUS HUB - Santa Isabel e Arujá</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <header>
     <h1>BUS HUB</h1>
-    <p>Santa Isabel • Smart Mobility</p>
+    <p>Mobilidade Urbana • Santa Isabel & Arujá</p>
 </header>
 
 <div class="container">
+    <!-- SELETOR DE CIDADE -->
+    <div class="cidade-card">
+        <div class="tabs-cidade" id="tabsCidade">
+            <button class="cidade-btn active" onclick="selecionarCidade('santa-isabel')">🏙️ SANTA ISABEL</button>
+            <button class="cidade-btn" onclick="selecionarCidade('aruja')">🏙️ ARUJÁ</button>
+        </div>
+    </div>
+
+    <!-- FILTROS -->
     <div class="filtro-card">
         <div class="form-group">
             <label>EMPRESA</label>
             <select id="selectEmpresa" onchange="atualizarLinhas()">
                 <option value="">Selecione...</option>
-                <option value="jacarei">Viação Jacareí</option>
-                <option value="suzano">Auto Viação Suzano</option>
-                <option value="unileste">Unileste</option>
-                <option value="internorte">Internorte</option>
             </select>
         </div>
 
@@ -34,6 +39,7 @@
         </div>
     </div>
 
+    <!-- PAINEL DE HORÁRIOS -->
     <div id="painel" class="main-panel hidden">
         <div class="header-panel">
             <h3 id="nomeLinha"></h3>
@@ -42,6 +48,7 @@
             </div>
         </div>
         <div id="tempoPercurso" class="percurso-info"></div>
+        <div id="legendaLinha" class="legenda-info"></div>
 
         <div class="tab-section" id="sectionSentido">
             <span class="tab-label">PARTIDAS DE:</span>
@@ -65,7 +72,7 @@
         <a href="https://www.instagram.com/rickudosennin/" target="_blank" class="insta-link">
             📷 Instagram
         </a>
-        <a href="https://wa.me/5511998654703" target="_blank" class="whats-link">
+        <a href="https://wa.me/5511999999999" target="_blank" class="whats-link">
             💬 WhatsApp
         </a>
     </div>
