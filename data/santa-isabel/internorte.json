@@ -16,5 +16,19 @@
                 "DOMINGOS E FERIADOS": ["06:10", "07:30", "08:40", "10:00", "11:20", "12:40", "13:55", "15:10", "16:20", "17:35", "18:50", "20:20", "21:35", "22:50"]
             }
         }
+    },
+    {
+        "id": "219BI1",
+        "nome": "219BI1 - Sta. Isabel (M. Serrat) / Guarulhos (Centro)",
+        "tarifa": "R$ 9,75",
+        "percurso": "2 horas",
+        "legenda": "🔄 Linha Circular | 🚇 Integração com Metrô/CPTM | Via Santa Isabel (Centro)",
+        "trajetos": {
+            "SANTA ISABEL (MONTE SERRAT)": {
+                "DIAS ÚTEIS": ["05:15", "11:30", "17:00", "21:00"],
+                "SÁBADOS": ["05:15", "11:30"],
+                "DOMINGOS E FERIADOS": []
+            }
+        }
     }
 ]
