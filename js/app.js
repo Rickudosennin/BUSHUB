@@ -61,9 +61,9 @@ function mostrarPainel(visivel) {
 const statusEl = document.getElementById('statusDados');
 const statusTexto = document.getElementById('statusTexto');
 
-function definirStatus(estado, ms) {
+function definirStatus(estado) {
     const textos = {
-        online: `Horários: online (${ms}ms)`,
+        online: 'Horários: online',
         cache: 'Horários: em cache',
         parcial: 'Horários: parcial',
         erro: 'Horários: sem dados'
@@ -77,7 +77,6 @@ async function carregarDadosCidade(cidade) {
     if (!config) return;
     Object.keys(db).forEach(key => delete db[key]);
     const entradas = Object.entries(config.empresas);
-    const inicio = performance.now();
     let deCache = false;
     let falhas = 0;
     const promessas = entradas.map(async ([chave, info]) => {
@@ -94,11 +93,10 @@ async function carregarDadosCidade(cidade) {
         }
     });
     await Promise.all(promessas);
-    const ms = Math.round(performance.now() - inicio);
     if (falhas === entradas.length) definirStatus('erro');
     else if (falhas > 0) definirStatus('parcial');
     else if (deCache) definirStatus('cache');
-    else definirStatus('online', ms);
+    else definirStatus('online');
 }
 
 function selecionarCidade(cidade) {
