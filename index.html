@@ -2,79 +2,86 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>BUS HUB - Santa Isabel e Arujá</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bus Hub | Horários de ônibus em Santa Isabel e Arujá</title>
+    <meta name="description" content="Consulte os horários de ônibus municipais e intermunicipais de Santa Isabel e Arujá, por empresa, linha, sentido e dia da semana.">
+    <meta name="theme-color" content="#14202B">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2314202B'/%3E%3Cpath d='M9 9h8a4 4 0 0 1 2 7.5A4.5 4.5 0 0 1 17.5 24H9z' fill='%23F2B705'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<header>
-    <h1>BUS HUB</h1>
-    <p>Mobilidade Urbana • Santa Isabel & Arujá</p>
+<header class="topo">
+    <div class="wrap">
+        <h1 class="marca">Bus Hub</h1>
+        <p class="marca-sub">Horários de ônibus em Santa Isabel e Arujá</p>
+    </div>
 </header>
 
-<div class="container">
-    <!-- SELETOR DE CIDADE -->
-    <div class="cidade-card">
-        <div class="tabs-cidade" id="tabsCidade">
-            <button class="cidade-btn active" onclick="selecionarCidade('santa-isabel')">🏙️ SANTA ISABEL</button>
-            <button class="cidade-btn" onclick="selecionarCidade('aruja')">🏙️ ARUJÁ</button>
-        </div>
+<main class="wrap">
+    <div class="cidades" id="tabsCidade" role="group" aria-label="Cidade">
+        <button type="button" class="cidade-btn active" data-cidade="santa-isabel" aria-pressed="true">Santa Isabel</button>
+        <button type="button" class="cidade-btn" data-cidade="aruja" aria-pressed="false">Arujá</button>
     </div>
 
-    <!-- FILTROS -->
-    <div class="filtro-card">
-        <div class="form-group">
-            <label>EMPRESA</label>
-            <select id="selectEmpresa" onchange="atualizarLinhas()">
-                <option value="">Selecione...</option>
+    <div class="filtros">
+        <div class="campo">
+            <label for="selectEmpresa">Empresa</label>
+            <select id="selectEmpresa">
+                <option value="">Selecione a empresa</option>
             </select>
         </div>
 
-        <div class="form-group">
-            <label>LINHA / DESTINO</label>
-            <select id="selectLinha" onchange="carregarQuadroHorario()" disabled>
-                <option value="">Aguardando seleção...</option>
+        <div class="campo">
+            <label for="selectLinha">Linha</label>
+            <select id="selectLinha" disabled>
+                <option value="">Escolha a empresa primeiro</option>
             </select>
         </div>
     </div>
 
-    <!-- PAINEL DE HORÁRIOS -->
-    <div id="painel" class="main-panel hidden">
-        <div class="header-panel">
-            <h3 id="nomeLinha"></h3>
-            <div class="info-badges">
-                <div id="valorTarifa" class="tarifa-badge"></div>
+    <p id="vazio" class="vazio">Escolha a empresa e a linha para ver os horários.</p>
+
+    <section id="painel" class="painel hidden" aria-live="polite">
+        <h2 id="nomeLinha" class="linha-nome"></h2>
+
+        <dl class="linha-meta">
+            <div id="metaTarifa" class="meta">
+                <dt>Tarifa</dt>
+                <dd id="valorTarifa"></dd>
             </div>
+            <div id="metaPercurso" class="meta">
+                <dt>Percurso</dt>
+                <dd id="tempoPercurso"></dd>
+            </div>
+        </dl>
+
+        <ul id="legendaLinha" class="legenda"></ul>
+
+        <div class="grupo" id="sectionSentido">
+            <span class="grupo-titulo" id="rotuloSentido">Partindo de</span>
+            <div id="tabsSentido" class="tabs" role="group" aria-labelledby="rotuloSentido"></div>
         </div>
-        <div id="tempoPercurso" class="percurso-info"></div>
-        <div id="legendaLinha" class="legenda-info"></div>
 
-        <div class="tab-section" id="sectionSentido">
-            <span class="tab-label">PARTIDAS DE:</span>
-            <div id="tabsSentido" class="tabs"></div>
+        <div class="grupo">
+            <span class="grupo-titulo" id="rotuloDia">Dia</span>
+            <div id="tabsDias" class="tabs" role="group" aria-labelledby="rotuloDia"></div>
         </div>
 
-        <div class="tab-section">
-            <span class="tab-label">QUADRO DE HORÁRIOS:</span>
-            <div id="tabsDias" class="tabs"></div>
-        </div>
+        <div id="listaHorarios" class="horarios"></div>
+    </section>
+</main>
 
-        <div id="listaHorarios" class="horarios-list"></div>
-    </div>
-</div>
-
-<footer>
-    <div class="footer-credits">
-        Programador e Desenvolvedor: <span>Paulo Cesar</span>
-    </div>
-    <div class="footer-links">
-        <a href="https://www.instagram.com/rickudosennin/" target="_blank" class="insta-link">
-            📷 Instagram
-        </a>
-        <a href="https://wa.me/5511998654703" target="_blank" class="whats-link">
-            💬 WhatsApp
-        </a>
+<footer class="rodape">
+    <div class="wrap rodape-in">
+        <p>Desenvolvido por Paulo Cesar</p>
+        <nav aria-label="Contato">
+            <a href="https://www.instagram.com/rickudosennin/" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://wa.me/5511998654703" target="_blank" rel="noopener">WhatsApp</a>
+        </nav>
     </div>
 </footer>
 
