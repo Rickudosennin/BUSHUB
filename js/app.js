@@ -58,22 +58,47 @@ function mostrarPainel(visivel) {
     el.vazio.classList.toggle('hidden', visivel);
 }
 
+const statusEl = document.getElementById('statusDados');
+const statusTexto = document.getElementById('statusTexto');
+
+function definirStatus(estado, ms) {
+    const textos = {
+        online: `Horários: online (${ms}ms)`,
+        cache: 'Horários: em cache',
+        parcial: 'Horários: parcial',
+        erro: 'Horários: sem dados'
+    };
+    statusEl.dataset.estado = estado;
+    statusTexto.textContent = textos[estado];
+}
+
 async function carregarDadosCidade(cidade) {
     const config = configCidades[cidade];
     if (!config) return;
     Object.keys(db).forEach(key => delete db[key]);
-    const promessas = Object.entries(config.empresas).map(async ([chave, info]) => {
+    const entradas = Object.entries(config.empresas);
+    const inicio = performance.now();
+    let deCache = false;
+    let falhas = 0;
+    const promessas = entradas.map(async ([chave, info]) => {
         try {
-            const resposta = await fetch(info.arquivo);
+            const resposta = await fetch(info.arquivo, { cache: 'no-cache' });
             if (!resposta.ok) throw new Error(`Erro ao carregar ${info.arquivo}`);
+            if (resposta.headers.get('X-From-Cache')) deCache = true;
             const dados = await resposta.json();
             db[chave] = Array.isArray(dados) ? dados : [dados];
         } catch (erro) {
             console.error(`Falha ao carregar ${info.arquivo}:`, erro);
             db[chave] = [];
+            falhas++;
         }
     });
     await Promise.all(promessas);
+    const ms = Math.round(performance.now() - inicio);
+    if (falhas === entradas.length) definirStatus('erro');
+    else if (falhas > 0) definirStatus('parcial');
+    else if (deCache) definirStatus('cache');
+    else definirStatus('online', ms);
 }
 
 function selecionarCidade(cidade) {
@@ -248,6 +273,17 @@ el.cidades.addEventListener('click', e => {
     if (btn) selecionarCidade(btn.dataset.cidade);
 });
 el.empresa.addEventListener('change', atualizarLinhas);
+
+/* Voltou a internet: atualiza os horários sem mexer no que a pessoa selecionou. */
+window.addEventListener('online', () => {
+    carregarDadosCidade(cidadeAtiva).then(() => {
+        if (linhaAtiva && empresaAtiva && db[empresaAtiva]) {
+            const atual = db[empresaAtiva].find(l => l.id === linhaAtiva.id);
+            if (atual) { linhaAtiva = atual; renderizarHorarios(); }
+        }
+    });
+});
+window.addEventListener('offline', () => definirStatus('cache'));
 el.linha.addEventListener('change', carregarQuadroHorario);
 
 function aoClicarAba(e) {

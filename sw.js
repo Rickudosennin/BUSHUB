@@ -1,6 +1,6 @@
 /* Bus Hub: funciona offline depois do primeiro acesso.
    Trocar CACHE_VERSION quando mudar a lista de arquivos ou a estrutura do site. */
-const CACHE_VERSION = 'bushub-v1';
+const CACHE_VERSION = 'bushub-v2';
 
 const ARQUIVOS = [
     './',
@@ -25,7 +25,7 @@ const ARQUIVOS = [
 self.addEventListener('install', evento => {
     evento.waitUntil(
         caches.open(CACHE_VERSION)
-            .then(cache => cache.addAll(ARQUIVOS))
+            .then(cache => Promise.all(ARQUIVOS.map(a => cache.add(new Request(a, { cache: 'reload' })))))
             .then(() => self.skipWaiting())
     );
 });
@@ -47,7 +47,12 @@ async function redePrimeiro(requisicao) {
         return resposta;
     } catch (erro) {
         const salvo = await cache.match(requisicao);
-        if (salvo) return salvo;
+        if (salvo) {
+            /* Avisa a página que esta resposta veio do aparelho, não da rede. */
+            const cabecalhos = new Headers(salvo.headers);
+            cabecalhos.set('X-From-Cache', '1');
+            return new Response(salvo.body, { status: salvo.status, statusText: salvo.statusText, headers: cabecalhos });
+        }
         throw erro;
     }
 }

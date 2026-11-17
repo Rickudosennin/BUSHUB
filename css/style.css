@@ -366,7 +366,7 @@ select:disabled {
 /* ===== RODAPÉ ===== */
 .rodape {
     border-top: 1px solid var(--line);
-    padding: 20px 0;
+    padding: 20px 0 72px;
     font-size: 0.9375rem;
     color: var(--muted);
 }
@@ -416,3 +416,38 @@ select:disabled {
         max-width: 360px;
     }
 }
+
+/* ===== STATUS DOS DADOS ===== */
+.status {
+    position: fixed;
+    right: 12px;
+    bottom: 12px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 14px;
+    background: #0E1720;
+    border: 1px solid #3B4A57;
+    border-radius: 8px;
+    color: #E8ECEF;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #9AA7B2;
+    flex: none;
+}
+
+.status[data-estado="online"] .status-dot { background: #22C55E; }
+.status[data-estado="cache"] .status-dot,
+.status[data-estado="parcial"] .status-dot { background: #F2B705; }
+.status[data-estado="erro"] .status-dot { background: #E5484D; }
